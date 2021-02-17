@@ -4,6 +4,11 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "title": "Essay 3",
+      "author": "Inter",
+      "id": 2
     }
   ],
   "comments": [
