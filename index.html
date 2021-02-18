@@ -79,6 +79,20 @@
 
     <!-- Main Script -->
     <script type="module">
+      function catchNetworkError(response) {
+        if (!response.ok) {
+          document.getElementById("output").innerHTML = "Network Error: " + response.status;
+          return null
+        } else {
+          return response.json();
+        }
+      }
+
+      function updateOutput(data) {
+        if (data != null) {
+          document.getElementById("output").innerHTML = JSON.stringify(data);
+        }
+      }
       // This function should fetch all of the data from the given endpoint.
       // From the 4 CRUD actions, this is the READ action, and uses the GET http method.
       // The main difference from fetchOne() will be the URL you request from; check
@@ -86,9 +100,8 @@
       function fetchAll() {
         // document.getElementById("recordForm").style.display = "none";
         fetch(document.getElementById("endpoint").value)
-        .then(response => response.json())
-        .catch(error => document.getElementById("output").innerHTML = error)
-        .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
+        .then(response => catchNetworkError(response))
+        .then(data => updateOutput(data));
       }
 
       // This function should fetch one entry from the given endpoint.
@@ -100,9 +113,8 @@
         let id = prompt("Enter record id");
         if (id != null) {
           fetch(document.getElementById("endpoint").value + "/" + id)
-          .then(response => response.json())
-          .catch(error => document.getElementById("output").innerHTML = error)
-          .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
+          .then(response => catchNetworkError(response))
+          .then(data => updateOutput(data));
         }
       }
 
@@ -128,9 +140,8 @@
             },
             body: Body
           })
-          .then(response => response.json())
-          .catch(error => document.getElementById("output").innerHTML = error)
-          .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
+          .then(response => catchNetworkError(response))
+          .then(data => updateOutput(data));
         }
       }
 
@@ -158,9 +169,8 @@
             },
             body: Body
           })
-          .then(response => response.json())
-          .catch(error => document.getElementById("output").innerHTML = error)
-          .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
+          .then(response => catchNetworkError(response))
+          .then(data => updateOutput(data));
         }
       }
 
@@ -176,9 +186,8 @@
           fetch(endpoint + "/" + id, {
           method: "DELETE",
           })
-          .then(response => response.json())
-          .catch(error => document.getElementById("output").innerHTML = error)
-          .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
+          .then(response => catchNetworkError(response))
+          .then(data => updateOutput(data));
         }
       }
 
