@@ -101,6 +101,7 @@
         if (id != null) {
           fetch(document.getElementById("endpoint").value + "/" + id)
           .then(response => response.json())
+          .catch(error => document.getElementById("output").innerHTML = error)
           .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
         }
       }
@@ -128,6 +129,7 @@
             body: Body
           })
           .then(response => response.json())
+          .catch(error => document.getElementById("output").innerHTML = error)
           .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
         }
       }
@@ -157,6 +159,7 @@
             body: Body
           })
           .then(response => response.json())
+          .catch(error => document.getElementById("output").innerHTML = error)
           .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
         }
       }
@@ -174,6 +177,7 @@
           method: "DELETE",
           })
           .then(response => response.json())
+          .catch(error => document.getElementById("output").innerHTML = error)
           .then(data => document.getElementById("output").innerHTML = JSON.stringify(data));
         }
       }
